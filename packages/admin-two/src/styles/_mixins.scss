@@ -1,0 +1,99 @@
+// ============================================================
+// 通用 mixin（只被 @use，不产出任何 CSS）
+// 由 vite.config.ts 的 additionalData 自动注入，业务 .scss 可直接 @include
+// ============================================================
+@use "sass:map";
+@use "config" as cfg;
+
+/// 居中布局
+@mixin flex-center($direction: row) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: center;
+  justify-content: center;
+}
+
+/// 两端对齐布局
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/// 文本省略：$lines 为 1 时单行，大于 1 时多行
+@mixin ellipsis($lines: 1) {
+  @if $lines == 1 {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  } @else {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $lines;
+  }
+}
+
+/// 卡片表面（跟随主题的背景/圆角/浅投影）
+@mixin card($padding: cfg.$space-4, $radius: cfg.$radius-lg) {
+  padding: $padding;
+  background: var(--app-color-bg-container);
+  border-radius: $radius;
+  box-shadow: var(--app-shadow-card-soft);
+}
+
+/// 自定义滚动条
+@mixin scrollbar($size: cfg.$scrollbar-size) {
+  &::-webkit-scrollbar {
+    width: $size;
+    height: $size;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--app-scrollbar-thumb);
+    border-radius: $size * 0.5;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: var(--app-scrollbar-thumb-hover);
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+/// 可交互元素：hover / active 背景跟随主题
+@mixin hoverable($radius: cfg.$radius-md) {
+  border-radius: $radius;
+  transition: background-color cfg.$duration cfg.$ease;
+
+  &:hover {
+    background: var(--app-color-bg-hover);
+  }
+
+  &:active {
+    background: var(--app-color-bg-active);
+  }
+}
+
+/// 小于等于某个断点，如 @include media-down(md) { ... }
+@mixin media-down($key) {
+  @media (max-width: map.get(cfg.$breakpoints, $key)) {
+    @content;
+  }
+}
+
+/// 仅在深色主题下生效
+@mixin dark-only {
+  html[data-theme="dark"] & {
+    @content;
+  }
+}
+
+/// 仅在浅色主题下生效
+@mixin light-only {
+  html[data-theme="light"] & {
+    @content;
+  }
+}

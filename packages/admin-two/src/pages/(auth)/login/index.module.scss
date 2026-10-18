@@ -1,0 +1,52 @@
+.page {
+  @include flex-center;
+
+  min-height: 100vh;
+  background: var(--app-gradient-login);
+  transition: background $duration $ease;
+}
+
+.card {
+  width: 380px;
+  padding: 8px 8px 0;
+  border-radius: $radius-xl;
+  box-shadow: var(--app-shadow-card);
+}
+
+.header {
+  @include flex-center(column);
+
+  gap: 6px;
+  margin-bottom: 20px;
+}
+
+.logo {
+  @include flex-center;
+
+  width: 44px;
+  height: 44px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+  background: var(--app-gradient-brand);
+  border-radius: $radius-xl;
+}
+
+.title {
+  margin: 4px 0 0 !important;
+}
+
+.tips {
+  margin: 16px 0 12px;
+  padding-top: 12px;
+  font-size: 12px;
+  color: var(--app-color-text-tertiary);
+  border-top: 1px dashed var(--app-color-border);
+}
+
+.accounts {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 8px;
+}

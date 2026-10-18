@@ -1,0 +1,12 @@
+{
+  "root": true,
+  "extends": ["../../eslint.config.base.json"],
+  "overrides": [
+    {
+      "files": ["src/**/*.ts"],
+      "rules": {
+        "no-console": "off"
+      }
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+# ESLint 自身的忽略清单（与 eslint.config.base.json 的 ignorePatterns 叠加）
+# 注：admin-vue / vite-demo 等历史工程位于本仓库的上级目录，已不在扫描范围内，
+# 因此不再需要在这里列出。
+
+node_modules/
+dist/
+coverage/

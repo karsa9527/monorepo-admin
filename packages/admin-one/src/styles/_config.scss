@@ -1,0 +1,48 @@
+// ============================================================
+// 编译期常量（只被 @use，不产出任何 CSS）
+// 这些值改完需要重新编译；需要「运行时切换」的值放 _theme.scss 的 CSS 变量
+// 通过 vite.config.ts 的 additionalData 自动注入到每个 .scss，无需手动 @use
+// ============================================================
+
+// 字体
+$font-family:
+  -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB",
+  "Microsoft YaHei", sans-serif;
+$font-family-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+
+// 布局尺寸（与 theme/tokens.ts 中的 headerHeight / siderWidth 保持一致）
+$sider-width: 216px;
+$sider-collapsed-width: 48px;
+$header-height: 56px;
+
+// 圆角
+$radius-sm: 4px;
+$radius-md: 6px;
+$radius-lg: 8px;
+$radius-xl: 12px;
+
+// 间距
+$space-1: 4px;
+$space-2: 8px;
+$space-3: 12px;
+$space-4: 16px;
+$space-5: 24px;
+$space-6: 32px;
+
+// 层级
+$z-header: 10;
+
+// 动效
+$duration: 0.2s;
+$ease: cubic-bezier(0.4, 0, 0.2, 1);
+
+// 断点（md 与 AppStore 的移动端判定 768px 保持一致）
+$breakpoints: (
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+);
+
+// 滚动条
+$scrollbar-size: 6px;

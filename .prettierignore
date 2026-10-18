@@ -1,0 +1,13 @@
+node_modules
+dist
+dist-ssr
+coverage
+package-lock.json
+*.min.js
+*.min.css
+.workbuddy
+.idea
+.DS_Store
+
+# 注：admin-vue / vite-demo 等历史工程位于本仓库的上级目录，已不在格式化范围内，
+# 因此不再需要在这里列出。

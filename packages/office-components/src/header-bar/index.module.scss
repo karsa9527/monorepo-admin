@@ -1,0 +1,64 @@
+/**
+ * HeaderBar 样式：自包含，不依赖宿主项目的 SCSS 变量 / mixin。
+ */
+
+$hb-header-height: 56px;
+$hb-space-4: 16px;
+$hb-radius-md: 6px;
+$hb-duration: 0.2s;
+$hb-ease: cubic-bezier(0.4, 0, 0.2, 1);
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: $hb-header-height;
+  padding: 0 $hb-space-4;
+  background: var(--app-color-header-bg, #fff);
+  box-shadow: var(--app-shadow-header, 0 1px 4px rgba(0, 21, 41, 0.08));
+  transition: background-color $hb-duration $hb-ease;
+}
+
+.trigger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: $hb-radius-md;
+  transition: background-color $hb-duration $hb-ease;
+
+  &:hover {
+    background: var(--app-color-bg-hover, rgba(0, 0, 0, 0.04));
+  }
+
+  &:active {
+    background: var(--app-color-bg-active, rgba(0, 0, 0, 0.06));
+  }
+}
+
+.user {
+  max-width: 160px;
+  padding: 4px 8px;
+  cursor: pointer;
+  border-radius: $hb-radius-md;
+  transition: background-color $hb-duration $hb-ease;
+
+  &:hover {
+    background: var(--app-color-bg-hover, rgba(0, 0, 0, 0.04));
+  }
+
+  &:active {
+    background: var(--app-color-bg-active, rgba(0, 0, 0, 0.06));
+  }
+}
+
+.nickname {
+  max-width: 120px;
+  overflow: hidden;
+  font-size: 14px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

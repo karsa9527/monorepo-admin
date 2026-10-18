@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f5f7fa" />
+    <title>Admin Two · 后台管理系统</title>
+    <script>
+      // 首屏渲染前决定主题，避免深色用户看到一帧白底
+      // 规则与 AppStore.readStoredTheme 一致：本地记录 > 系统偏好
+      (function () {
+        try {
+          var raw = localStorage.getItem('admin:theme-mode');
+          var stored = raw ? JSON.parse(raw).value : null;
+          var mode =
+            stored === 'dark' || stored === 'light'
+              ? stored
+              : window.matchMedia('(prefers-color-scheme: dark)').matches
+                ? 'dark'
+                : 'light';
+          var root = document.documentElement;
+          root.setAttribute('data-theme', mode);
+          root.style.colorScheme = mode;
+        } catch (e) {
+          /* localStorage 不可用（无痕模式等）时保持 SCSS 默认的浅色主题 */
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

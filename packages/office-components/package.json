@@ -1,0 +1,87 @@
+{
+  "name": "@office/components",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "description": "Office 前端通用组件库（React 18 + antd 5）",
+  "sideEffects": [
+    "*.css",
+    "*.scss"
+  ],
+  "exports": {
+    "./loading": {
+      "types": "./src/loading/index.tsx",
+      "import": "./src/loading/index.tsx",
+      "default": "./src/loading/index.tsx"
+    },
+    "./basic-layout": {
+      "types": "./src/basic-layout/index.tsx",
+      "import": "./src/basic-layout/index.tsx",
+      "default": "./src/basic-layout/index.tsx"
+    },
+    "./header-bar": {
+      "types": "./src/header-bar/index.tsx",
+      "import": "./src/header-bar/index.tsx",
+      "default": "./src/header-bar/index.tsx"
+    },
+    "./side-menu": {
+      "types": "./src/side-menu/index.tsx",
+      "import": "./src/side-menu/index.tsx",
+      "default": "./src/side-menu/index.tsx"
+    },
+    "./breadcrumbs": {
+      "types": "./src/breadcrumbs/index.tsx",
+      "import": "./src/breadcrumbs/index.tsx",
+      "default": "./src/breadcrumbs/index.tsx"
+    },
+    "./forbidden": {
+      "types": "./src/forbidden/index.tsx",
+      "import": "./src/forbidden/index.tsx",
+      "default": "./src/forbidden/index.tsx"
+    },
+    "./not-found": {
+      "types": "./src/not-found/index.tsx",
+      "import": "./src/not-found/index.tsx",
+      "default": "./src/not-found/index.tsx"
+    }
+  },
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint . --ext .js,.cjs,.mjs,.ts,.tsx",
+    "lint:fix": "npm run lint -- --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "peerDependencies": {
+    "@ant-design/icons": "^5.0.0",
+    "antd": "^5.0.0",
+    "react": ">=18",
+    "react-dom": ">=18",
+    "react-router-dom": ">=6"
+  },
+  "devDependencies": {
+    "@types/node": "^22.9.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@typescript-eslint/eslint-plugin": "^8.71.2",
+    "@typescript-eslint/parser": "^8.71.2",
+    "antd": "^5.21.6",
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-react": "^7.37.2",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "eslint-plugin-react-refresh": "^0.4.14",
+    "lint-staged": "^15.2.10",
+    "prettier": "^3.3.3",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "sass": "^1.105.2",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.10",
+    "@ant-design/icons": "^5.5.1",
+    "react-router-dom": "^6.27.0"
+  }
+}

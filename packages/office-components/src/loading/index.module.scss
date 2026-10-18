@@ -1,0 +1,46 @@
+/**
+ * Loading 样式：自包含，不依赖宿主项目的 SCSS 变量 / mixin
+ * 颜色优先使用宿主注入的 --app-* CSS 变量（见 admin-one/src/styles/_theme.scss），
+ * 取不到时回退到浅色主题的中性色，保证在任意宿主里都不会掉样。
+ */
+
+.base {
+  box-sizing: border-box;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 整屏：路由切换 / 首屏初始化 */
+.full {
+  min-height: 100vh;
+  background: var(--app-color-bg-layout, #f5f7fa);
+  transition: background-color 0.2s ease-in-out;
+}
+
+/* 局部占位：卡片、面板内部 */
+.inline {
+  padding: 48px 0;
+}
+
+/* 覆盖父容器：父级需 position: relative */
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  background: var(--app-color-bg-mask, rgba(255, 255, 255, 0.65));
+}
+
+.spinner {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+.tip {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--app-color-text-secondary, rgba(0, 0, 0, 0.45));
+}

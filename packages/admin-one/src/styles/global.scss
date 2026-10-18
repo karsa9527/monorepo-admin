@@ -1,0 +1,67 @@
+@use "theme";
+
+// ============================================================
+// 全局基础样式
+// 颜色一律走 var(--app-*)，切主题时无需任何 JS 参与重绘
+// ============================================================
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background: var(--app-color-bg-layout);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: $font-family;
+  color: var(--app-color-text);
+  background: var(--app-color-bg-layout);
+  transition:
+    background-color $duration $ease,
+    color $duration $ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body {
+    transition: none;
+  }
+}
+
+// 滚动条
+::-webkit-scrollbar {
+  width: $scrollbar-size;
+  height: $scrollbar-size;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--app-scrollbar-thumb);
+  border-radius: $scrollbar-size * 0.5;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--app-scrollbar-thumb-hover);
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+// 键盘聚焦可见
+:focus-visible {
+  outline: 2px solid var(--app-color-primary);
+  outline-offset: 2px;
+}
+
+// 通用卡片容器（历史类名，保留兼容）
+.page-card {
+  @include card;
+}

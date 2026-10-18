@@ -1,0 +1,96 @@
+// ============================================================
+// 运行时主题变量（本项目「白天 / 黑夜」的 CSS 方案）
+//
+// · :root                → 浅色主题（默认，保证 JS 执行前首屏就是对的）
+// · html[data-theme=dark] → 深色主题，由 AppStore 切换 data-theme 触发
+// · 业务样式一律用 var(--app-*) 取色，不要写死颜色，否则深色下会瞎
+//
+// 数值与 theme/tokens.ts 一一对应：那边给 antd，这边给自定义样式。
+// 唯一例外是品牌色：store.setPrimaryColor() 会在运行时覆盖 --app-color-primary。
+// ============================================================
+:root {
+  color-scheme: light;
+
+  // 品牌色
+  --app-color-primary: #1677ff;
+  --app-color-primary-hover: #4096ff;
+
+  // 背景
+  --app-color-bg-layout: #f5f7fa;
+  --app-color-bg-container: #ffffff;
+  --app-color-bg-elevated: #ffffff;
+  --app-color-bg-hover: rgb(0 0 0 / 4%);
+  --app-color-bg-active: rgb(0 0 0 / 6%);
+
+  // 文本
+  --app-color-text: rgb(0 0 0 / 88%);
+  --app-color-text-secondary: rgb(0 0 0 / 65%);
+  --app-color-text-tertiary: rgb(0 0 0 / 45%);
+
+  // 边框
+  --app-color-border: rgb(5 5 5 / 12%);
+  --app-color-border-secondary: rgb(5 5 5 / 6%);
+
+  // 布局区块
+  --app-color-sider-bg: #ffffff;
+  --app-color-header-bg: #ffffff;
+
+  // 渐变
+  --app-gradient-brand: linear-gradient(
+    135deg,
+    var(--app-color-primary),
+    color-mix(in srgb, var(--app-color-primary) 45%, #fff)
+  );
+  --app-gradient-login: linear-gradient(135deg, #eef4ff 0%, #f7f9fc 55%, #eaf7f0 100%);
+
+  // 投影
+  --app-shadow-header: 0 1px 4px rgb(0 21 41 / 8%);
+  --app-shadow-card-soft: 0 1px 2px rgb(0 0 0 / 4%);
+  --app-shadow-card: 0 12px 40px rgb(0 21 41 / 10%);
+
+  // 图表
+  --app-color-chart-track: #f0f5ff;
+
+  // 滚动条
+  --app-scrollbar-thumb: rgb(0 0 0 / 18%);
+  --app-scrollbar-thumb-hover: rgb(0 0 0 / 32%);
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+
+  --app-color-primary: #1677ff;
+  --app-color-primary-hover: #4096ff;
+
+  --app-color-bg-layout: #0f1115;
+  --app-color-bg-container: #171a1f;
+  --app-color-bg-elevated: #1f2329;
+  --app-color-bg-hover: rgb(255 255 255 / 8%);
+  --app-color-bg-active: rgb(255 255 255 / 12%);
+
+  --app-color-text: rgb(255 255 255 / 88%);
+  --app-color-text-secondary: rgb(255 255 255 / 65%);
+  --app-color-text-tertiary: rgb(255 255 255 / 45%);
+
+  --app-color-border: rgb(255 255 255 / 14%);
+  --app-color-border-secondary: rgb(255 255 255 / 8%);
+
+  --app-color-sider-bg: #12161b;
+  --app-color-header-bg: #171a1f;
+
+  --app-gradient-brand: linear-gradient(
+    135deg,
+    var(--app-color-primary),
+    color-mix(in srgb, var(--app-color-primary) 55%, #fff)
+  );
+  --app-gradient-login: linear-gradient(135deg, #0c1220 0%, #0f1115 55%, #0a1512 100%);
+
+  --app-shadow-header: 0 1px 4px rgb(0 0 0 / 45%);
+  --app-shadow-card-soft: 0 1px 2px rgb(0 0 0 / 32%);
+  --app-shadow-card: 0 12px 40px rgb(0 0 0 / 45%);
+
+  --app-color-chart-track: rgb(255 255 255 / 6%);
+
+  --app-scrollbar-thumb: rgb(255 255 255 / 18%);
+  --app-scrollbar-thumb-hover: rgb(255 255 255 / 32%);
+}

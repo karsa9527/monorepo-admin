@@ -1,0 +1,55 @@
+{
+  "name": "@office/admin-two",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "后台管理系统 B —— 与 admin-one 同构，用于验证共享包复用（端口 5179）",
+  "scripts": {
+    "predev": "npm run build --prefix ../office-mock",
+    "dev": "vite",
+    "prebuild": "npm run build --prefix ../office-mock",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "pretypecheck": "npm run build --prefix ../office-mock",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint . --ext .js,.cjs,.mjs,.ts,.tsx",
+    "lint:fix": "npm run lint -- --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "dependencies": {
+    "@ant-design/icons": "^5.5.1",
+    "@office/components": "*",
+    "@office/lib": "*",
+    "@office/mock": "*",
+    "antd": "^5.21.6",
+    "axios": "^1.7.7",
+    "dayjs": "^1.11.13",
+    "mobx": "^6.13.5",
+    "mobx-react-lite": "^4.1.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.27.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.9.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@typescript-eslint/eslint-plugin": "^8.71.2",
+    "@typescript-eslint/parser": "^8.71.2",
+    "@vitejs/plugin-react": "^4.3.3",
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-react": "^7.37.2",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "eslint-plugin-react-refresh": "^0.4.14",
+    "lint-staged": "^15.2.10",
+    "prettier": "^3.3.3",
+    "sass": "^1.105.2",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.10"
+  },
+  "volta": {
+    "node": "20.20.2"
+  }
+}

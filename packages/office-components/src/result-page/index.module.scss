@@ -1,0 +1,15 @@
+/**
+ * 结果页外壳样式：自包含，不依赖宿主项目的 SCSS 变量 / mixin
+ * 颜色优先使用宿主注入的 --app-* CSS 变量，取不到时回退到浅色主题的中性色。
+ */
+
+.wrap {
+  box-sizing: border-box;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 16px;
+  background: var(--app-color-bg-layout, transparent);
+  transition: background-color 0.2s ease-in-out;
+}
