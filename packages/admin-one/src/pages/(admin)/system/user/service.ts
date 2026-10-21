@@ -1,4 +1,4 @@
-import { http } from '@office/lib/request';
+import { http } from '@office-admin/lib/request';
 import type { PageParams, PageResult, UserInfo } from '@/types';
 
 /** 用户管理接口 */

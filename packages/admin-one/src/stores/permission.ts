@@ -1,15 +1,15 @@
 import { makeAutoObservable } from 'mobx';
 import type { RootStore } from './index';
-import { constantRoutes } from '@office/lib/router';
-import type { AppRouteObject } from '@office/lib/router';
+import { constantRoutes } from '@office-admin/lib/router';
+import type { AppRouteObject } from '@office-admin/lib/router';
 import {
   buildMenuItems,
   filterRoutes,
   findFirstAccessiblePath,
   flattenRoutes,
   type MenuNode,
-} from '@office/lib/router';
-import type { FlatRoute } from '@office/lib/router';
+} from '@office-admin/lib/router';
+import type { FlatRoute } from '@office-admin/lib/router';
 
 /** 超级管理员通配符 */
 export const SUPER_PERMISSION = '*';

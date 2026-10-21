@@ -1,6 +1,6 @@
 import { makeAutoObservable } from 'mobx';
 import type { RootStore } from './index';
-import { storage } from '@office/lib';
+import { storage } from '@office-admin/lib';
 import { applyTheme, getSystemTheme, type ThemeMode } from '@/theme';
 
 export type { ThemeMode };

@@ -7,7 +7,7 @@ import Auth from '@/components/auth';
 import { roleService } from './service';
 import type { RoleItem } from '@/types';
 import { PERMISSION_GROUPS, PERMISSION_LABEL_MAP } from '@/constants/permission';
-import { useRequest } from '@office/lib/hooks';
+import { useRequest } from '@office-admin/lib/hooks';
 
 const RoleListPage = observer(function RoleListPage() {
   const { message } = App.useApp();

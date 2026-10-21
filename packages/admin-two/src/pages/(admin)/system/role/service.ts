@@ -1,4 +1,4 @@
-import { http } from '@office/lib/request';
+import { http } from '@office-admin/lib/request';
 import type { RoleItem } from '@/types';
 
 /** 角色管理接口 */

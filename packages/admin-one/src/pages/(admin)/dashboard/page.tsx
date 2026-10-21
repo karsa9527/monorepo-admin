@@ -4,8 +4,8 @@ import { observer } from 'mobx-react-lite';
 import { useAuthStore } from '@/stores';
 import { dashboardService } from './service';
 import type { DashboardStats } from '@/types';
-import { useRequest } from '@office/lib/hooks';
-import { formatDate, formatNumber } from '@office/lib';
+import { useRequest } from '@office-admin/lib/hooks';
+import { formatDate, formatNumber } from '@office-admin/lib';
 import styles from './index.module.scss';
 
 const LEVEL_COLOR: Record<string, string> = {

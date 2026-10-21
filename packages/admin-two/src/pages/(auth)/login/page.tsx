@@ -4,8 +4,8 @@ import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
 import { useAuthStore, usePermissionStore } from '@/stores';
-import { env } from '@office/lib';
-import { Redirect } from '@office/lib/router';
+import { env } from '@office-admin/lib';
+import { Redirect } from '@office-admin/lib/router';
 import type { LoginParams } from '@/types';
 import styles from './index.module.scss';
 

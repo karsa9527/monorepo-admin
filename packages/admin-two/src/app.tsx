@@ -4,8 +4,8 @@ import zhCN from 'antd/locale/zh_CN';
 import { RouterProvider } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
 import { useAppStore, useAuthStore, useStores } from '@/stores';
-import { setupRequestHooks } from '@office/lib/request';
-import type { AppRouter } from '@office/lib/router';
+import { setupRequestHooks } from '@office-admin/lib/request';
+import type { AppRouter } from '@office-admin/lib/router';
 import { createAntdTheme } from '@/theme';
 
 export type { AppRouter };

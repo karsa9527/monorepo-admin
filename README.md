@@ -24,11 +24,11 @@ monorepo-admin/               # ← 本仓库根（npm install 在这里执行�
 ├── lint-staged.config.js     # 提交前只处理暂存区文件
 ├── .husky/pre-commit         # 调用 lint-staged（含 node 路径兜底）
 └── packages/
-    ├── office-lib/           # @office/lib       工具函数 + 请求层 + 约定式路由核心
-    ├── office-components/    # @office/components 通用组件 + 后台布局（按子路径引入）
-    ├── office-mock/          # @office/mock      mock 数据 + vite 中间件插件
-    ├── admin-one/            # @office/admin-one 后台应用 A（端口 5178）
-    └── admin-two/            # @office/admin-two 后台应用 B（端口 5179）
+    ├── office-admin-lib/         # @office-admin/lib         工具函数 + 请求层 + 约定式路由核心
+    ├── office-admin-components/  # @office-admin/components  通用组件 + 后台布局（按子路径引入）
+    ├── office-admin-mock/        # @office-admin/mock        mock 数据 + vite 中间件插件
+    ├── admin-one/                # @office/admin-one         后台应用 A（端口 5178）
+    └── admin-two/                # @office/admin-two         后台应用 B（端口 5179）
 ```
 
 每个子工程都是「自包含」的：`package.json` + `tsconfig.json` + `.eslintrc.json` + `prettier.config.js` + `lint-staged.config.js`，
@@ -37,7 +37,7 @@ monorepo-admin/               # ← 本仓库根（npm install 在这里执行�
 ## 快速开始
 
 ```bash
-npm install            # 安装全部 workspace 依赖（postinstall 会自动构建 @office/mock）
+npm install            # 安装全部 workspace 依赖（postinstall 会自动构建 @office-admin/mock）
 
 npm run dev:one        # 启动 admin-one  → http://localhost:5178
 npm run dev:two        # 启动 admin-two  → http://localhost:5179
@@ -52,20 +52,20 @@ npm run format         # 根目录统一格式化
 
 ```bash
 npm run dev -w @office/admin-one
-npm run build -w @office/mock
-npm run lint -w @office/lib
+npm run build -w @office-admin/mock
+npm run lint -w @office-admin/lib
 ```
 
 ## 共享包
 
-### @office/lib —— 基础库
+### @office-admin/lib —— 基础库
 
-| 入口                  | 内容                                                                                                                            |
-| --------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| `@office/lib`         | is / storage / format / date / object / tree / function / validate / url / download / dom / env                                 |
-| `@office/lib/request` | axios 封装：token 注入、业务码拆包、重复请求取消、失败重试、401 登出                                                            |
-| `@office/lib/hooks`   | `useRequest`                                                                                                                    |
-| `@office/lib/router`  | 约定式（文件系统）路由：`createAppRouter` / `toRouteObjects` / `constantRoutes` / `lazyPage` / `Redirect` / 菜单与面包屑 helper |
+| 入口                        | 内容                                                                                                                            |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| `@office-admin/lib`         | is / storage / format / date / object / tree / function / validate / url / download / dom / env                                 |
+| `@office-admin/lib/request` | axios 封装：token 注入、业务码拆包、重复请求取消、失败重试、401 登出                                                            |
+| `@office-admin/lib/hooks`   | `useRequest`                                                                                                                    |
+| `@office-admin/lib/router`  | 约定式（文件系统）路由：`createAppRouter` / `toRouteObjects` / `constantRoutes` / `lazyPage` / `Redirect` / 菜单与面包屑 helper |
 
 路由核心与业务解耦：守卫、Loading、路由模式都由宿主注入。
 
@@ -82,12 +82,12 @@ createAppRouter({
 约定式路由的根目录固定为宿主应用的 `/src/pages`（`import.meta.glob` 的 pattern 必须是字面量），
 目录约定 `page.tsx` / `layout.tsx` / `route.meta.ts` / `loading.tsx` / `not-found.tsx` 保持不变。
 
-### @office/components —— 组件库
+### @office-admin/components —— 组件库
 
 `Loading` 是该包的第一个组件，支持四种用法：
 
 ```tsx
-import Loading from '@office/components/loading'; // 默认导入，组件没有具名导出
+import Loading from '@office-admin/components/loading'; // 默认导入，组件没有具名导出
 
 <Loading />                                   // 整屏，默认「加载中…」
 <Loading tip="正在初始化…" />                  // 整屏 + 自定义文案
@@ -98,12 +98,12 @@ import Loading from '@office/components/loading'; // 默认导入，组件没有
 额外能力：`delay={200}` 延迟显示避免闪屏、`overlay` 覆盖父容器（局部刷新）、
 `tip` 空字符串时只显示图标。样式自包含，颜色优先读取宿主的 `--app-*` CSS 变量。
 
-**没有聚合出口（barrel）**：本包不提供 `src/index.ts`，也不提供 `@office/components` 裸入口，
-一律按组件子路径引入。好处是引入即精确命中文件——不会因为一次 `import { X } from '@office/components'`
+**没有聚合出口（barrel）**：本包不提供 `src/index.ts`，也不提供 `@office-admin/components` 裸入口，
+一律按组件子路径引入。好处是引入即精确命中文件——不会因为一次 `import { X } from '@office-admin/components'`
 把整库拖进依赖图，也避免新增组件时反复改同一个「总出口」文件造成无谓冲突。
 
 **组件只提供 `export default`**：`src/<component>/index.tsx` 里组件本体不具名导出，
-使用方只能 `import X from '@office/components/<component>'`。这样每个组件的对外契约是「一个默认导出」，
+使用方只能 `import X from '@office-admin/components/<component>'`。这样每个组件的对外契约是「一个默认导出」，
 重命名 / 换实现不会牵动调用方，也不存在「默认导出与具名导出指向不同东西」的歧义。
 （Props 类型仍可以 `export interface XxxProps` 形式导出——它只活在类型层，编译后不存在运行时导出。）
 
@@ -115,16 +115,16 @@ import Loading from '@office/components/loading'; // 默认导入，组件没有
 后台骨架也在本包里，四个组件**全部是受控的展示组件**：不认识 MobX / Redux，也不读任何 store，
 折叠态、主题、菜单、面包屑、用户信息都通过 props 注入，应用侧只留一层薄容器（`src/components/app-shell`）。
 
-| 入口                              | 说明                                                                    |
-| --------------------------------- | ----------------------------------------------------------------------- |
-| `@office/components/basic-layout` | 侧栏 + 顶栏 + 内容区（+ 可选页脚）；不传 `children` 时渲染 `<Outlet />` |
-| `@office/components/header-bar`   | 折叠按钮 + 面包屑插槽 + 主题开关 + 用户下拉                             |
-| `@office/components/side-menu`    | 透传 antd `items`，选中态与父级展开自动跟随当前路由                     |
-| `@office/components/breadcrumbs`  | 纯渲染，链路数据由宿主算好传入                                          |
+| 入口                                    | 说明                                                                    |
+| --------------------------------------- | ----------------------------------------------------------------------- |
+| `@office-admin/components/basic-layout` | 侧栏 + 顶栏 + 内容区（+ 可选页脚）；不传 `children` 时渲染 `<Outlet />` |
+| `@office-admin/components/header-bar`   | 折叠按钮 + 面包屑插槽 + 主题开关 + 用户下拉                             |
+| `@office-admin/components/side-menu`    | 透传 antd `items`，选中态与父级展开自动跟随当前路由                     |
+| `@office-admin/components/breadcrumbs`  | 纯渲染，链路数据由宿主算好传入                                          |
 
 ```tsx
-import BasicLayout from '@office/components/basic-layout';
-import SideMenu from '@office/components/side-menu';
+import BasicLayout from '@office-admin/components/basic-layout';
+import SideMenu from '@office-admin/components/side-menu';
 
 <BasicLayout
   title="后台管理系统"
@@ -146,10 +146,10 @@ import SideMenu from '@office/components/side-menu';
 
 ```tsx
 // admin-*/src/pages/(auth)/403/page.tsx
-export { default } from '@office/components/forbidden';
+export { default } from '@office-admin/components/forbidden';
 
 // admin-*/src/pages/(auth)/404/page.tsx  与  admin-*/src/pages/not-found.tsx
-export { default } from '@office/components/not-found';
+export { default } from '@office-admin/components/not-found';
 ```
 
 需要定制时再传 props（两个组件签名一致）：`title` / `subTitle` / `backText`（传 `null` 则隐藏按钮）/
@@ -162,41 +162,41 @@ export { default } from '@office/components/not-found';
 `src/pages/not-found.tsx`（约定式路由的全局兜底）与 `(auth)/404/page.tsx` 指向同一个模块，
 构建后共享同一个 chunk——不要为兜底页再复制一份 UI。
 
-### @office/mock —— 开发期 Mock
+### @office-admin/mock —— 开发期 Mock
 
 `mockPlugin()` 是一个 Vite 中间件插件，只拦截 `/api` 前缀（可配置），未命中的请求继续走代理。
 
 ```ts
 // vite.config.ts
-import { mockPlugin } from '@office/mock';
+import { mockPlugin } from '@office-admin/mock';
 plugins: [react(), mockPlugin({ prefix: '/api' })];
 ```
 
 - 数据源：`src/db.ts`（用户 / 角色 / 权限点）；接口：`src/handlers.ts`
 - 该包以 **构建产物** 形式被 Node 侧消费（vite.config 会被打包，裸导入保持外部化），
-  所以源码里的相对导入必须带 `.js` 后缀，改完 mock 需要 `npm run build -w @office/mock`
+  所以源码里的相对导入必须带 `.js` 后缀，改完 mock 需要 `npm run build -w @office-admin/mock`
   （应用的 `predev` / `prebuild` 已自动执行）
 
 ## 迁移对照表（原 admin-react → 新位置）
 
-| 原路径                                              | 新位置                                             | 引用方式                               |
-| --------------------------------------------------- | -------------------------------------------------- | -------------------------------------- |
-| `src/utils/*`                                       | `packages/office-lib/src/*`                        | `@office/lib`                          |
-| `src/utils/request/*`                               | `packages/office-lib/src/request/*`                | `@office/lib/request`                  |
-| `src/utils/hooks/*`                                 | `packages/office-lib/src/hooks/*`                  | `@office/lib/hooks`                    |
-| `src/router/fs-routes.tsx`                          | `packages/office-lib/src/router/fs-routes.tsx`     | `@office/lib/router`                   |
-| `src/router/{helpers,types,lazy-page,icons}.ts(x)`  | `packages/office-lib/src/router/*`                 | `@office/lib/router`                   |
-| `src/router/redirect/`                              | `packages/office-lib/src/router/redirect.tsx`      | `@office/lib/router`（`Redirect`）     |
-| `src/router/index.tsx`                              | `packages/office-lib/src/router/create-router.tsx` | 应用侧 `src/router/index.tsx` 只做装配 |
-| `src/router/auth-guard/`                            | 保留在应用内                                       | 依赖 store，属于业务                   |
-| `src/components/page-loading/`                      | `packages/office-components/src/loading/`          | `@office/components/loading`           |
-| `src/components/layouts/basic-layout/`              | `packages/office-components/src/basic-layout/`     | `@office/components/basic-layout`      |
-| `src/components/layouts/header-bar/`                | `packages/office-components/src/header-bar/`       | `@office/components/header-bar`        |
-| `src/components/layouts/side-menu/`                 | `packages/office-components/src/side-menu/`        | `@office/components/side-menu`         |
-| `src/components/layouts/breadcrumbs/`               | `packages/office-components/src/breadcrumbs/`      | `@office/components/breadcrumbs`       |
-| `src/pages/(auth)/403/`                             | `packages/office-components/src/forbidden/`        | `@office/components/forbidden`         |
-| `src/pages/(auth)/404/` + `src/pages/not-found.tsx` | `packages/office-components/src/not-found/`        | `@office/components/not-found`         |
-| `mock/*`                                            | `packages/office-mock/src/*`                       | `@office/mock`                         |
+| 原路径                                              | 新位置                                                   | 引用方式                                 |
+| --------------------------------------------------- | -------------------------------------------------------- | ---------------------------------------- |
+| `src/utils/*`                                       | `packages/office-admin-lib/src/*`                        | `@office-admin/lib`                      |
+| `src/utils/request/*`                               | `packages/office-admin-lib/src/request/*`                | `@office-admin/lib/request`              |
+| `src/utils/hooks/*`                                 | `packages/office-admin-lib/src/hooks/*`                  | `@office-admin/lib/hooks`                |
+| `src/router/fs-routes.tsx`                          | `packages/office-admin-lib/src/router/fs-routes.tsx`     | `@office-admin/lib/router`               |
+| `src/router/{helpers,types,lazy-page,icons}.ts(x)`  | `packages/office-admin-lib/src/router/*`                 | `@office-admin/lib/router`               |
+| `src/router/redirect/`                              | `packages/office-admin-lib/src/router/redirect.tsx`      | `@office-admin/lib/router`（`Redirect`） |
+| `src/router/index.tsx`                              | `packages/office-admin-lib/src/router/create-router.tsx` | 应用侧 `src/router/index.tsx` 只做装配   |
+| `src/router/auth-guard/`                            | 保留在应用内                                             | 依赖 store，属于业务                     |
+| `src/components/page-loading/`                      | `packages/office-admin-components/src/loading/`          | `@office-admin/components/loading`       |
+| `src/components/layouts/basic-layout/`              | `packages/office-admin-components/src/basic-layout/`     | `@office-admin/components/basic-layout`  |
+| `src/components/layouts/header-bar/`                | `packages/office-admin-components/src/header-bar/`       | `@office-admin/components/header-bar`    |
+| `src/components/layouts/side-menu/`                 | `packages/office-admin-components/src/side-menu/`        | `@office-admin/components/side-menu`     |
+| `src/components/layouts/breadcrumbs/`               | `packages/office-admin-components/src/breadcrumbs/`      | `@office-admin/components/breadcrumbs`   |
+| `src/pages/(auth)/403/`                             | `packages/office-admin-components/src/forbidden/`        | `@office-admin/components/forbidden`     |
+| `src/pages/(auth)/404/` + `src/pages/not-found.tsx` | `packages/office-admin-components/src/not-found/`        | `@office-admin/components/not-found`     |
+| `mock/*`                                            | `packages/office-admin-mock/src/*`                       | `@office-admin/mock`                     |
 
 `admin-one` / `admin-two` 里已不存在 utils / mock / page-loading / 路由核心代码 / 403、404 页面 UI，
 全部改为引用上表中的共享包。
@@ -230,6 +230,6 @@ plugins: [react(), mockPlugin({ prefix: '/api' })];
 
 - 共享包直接引用 `src/*.ts(x)`，**不要**在共享包里写 `@/` 别名（那是宿主应用的别名），跨包一律用包名导入
 - 共享包内不要 import 宿主应用的文件，需要能力时通过「参数注入」暴露（参考 `createAppRouter` 的 `guard` / `fallback`）
-- `@office/mock` 的源码相对导入必须带 `.js` 后缀（NodeNext ESM 规范）
+- `@office-admin/mock` 的源码相对导入必须带 `.js` 后缀（NodeNext ESM 规范）
 - mock 插件只在 dev server 生效（`apply: 'serve'`），生产构建不会包含任何 mock 代码；
   `.env` 里的 `VITE_USE_MOCK` 仅作为约定标记，需要按环境关闭时给 `mockPlugin` 传参即可

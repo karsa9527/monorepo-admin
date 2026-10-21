@@ -2,8 +2,8 @@ import { useLocation } from 'react-router-dom';
 import type { ReactNode } from 'react';
 import { observer } from 'mobx-react-lite';
 import { useAuthStore, usePermissionStore } from '@/stores';
-import Loading from '@office/components/loading';
-import { Redirect, type RouteMeta } from '@office/lib/router';
+import Loading from '@office-admin/components/loading';
+import { Redirect, type RouteMeta } from '@office-admin/lib/router';
 
 export interface AuthGuardProps {
   meta?: RouteMeta;

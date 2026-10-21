@@ -1,5 +1,5 @@
 /**
- * @office/lib 统一出口：基础工具库
+ * @office-admin/lib 统一出口：基础工具库
  *
  * 分层说明：
  *  - is        : 类型判断
@@ -16,9 +16,9 @@
  *  - env       : 环境变量
  *
  * 其余入口（避免把 React / axios 拖进只做纯计算的场景）：
- *  - @office/lib/request : axios 请求层
- *  - @office/lib/hooks   : useRequest
- *  - @office/lib/router  : 约定式路由核心
+ *  - @office-admin/lib/request : axios 请求层
+ *  - @office-admin/lib/hooks   : useRequest
+ *  - @office-admin/lib/router  : 约定式路由核心
  */
 export * from './is';
 export * from './storage';

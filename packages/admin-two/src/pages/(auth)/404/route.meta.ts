@@ -1,4 +1,4 @@
-import type { RouteMetaInput } from '@office/lib/router';
+import type { RouteMetaInput } from '@office-admin/lib/router';
 
 export default {
   title: '页面不存在',

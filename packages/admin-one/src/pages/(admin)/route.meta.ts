@@ -1,4 +1,4 @@
-import type { RouteMetaInput } from '@office/lib/router';
+import type { RouteMetaInput } from '@office-admin/lib/router';
 
 /**
  * 后台主区域（路由组，不进入 URL）

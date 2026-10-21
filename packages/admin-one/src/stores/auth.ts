@@ -2,8 +2,8 @@ import { makeAutoObservable, runInAction } from 'mobx';
 import type { RootStore } from './index';
 import { authService } from '@/pages/(auth)/login/service';
 import type { LoginParams, UserInfo } from '@/types';
-import { tokenStorage } from '@office/lib';
-import { ERROR_CODE_UNAUTHORIZED, RequestError } from '@office/lib/request';
+import { tokenStorage } from '@office-admin/lib';
+import { ERROR_CODE_UNAUTHORIZED, RequestError } from '@office-admin/lib/request';
 
 /** 认证 store：token、用户信息、登录 / 登出 / 恢复登录态 */
 export class AuthStore {

@@ -1,4 +1,4 @@
-import { http } from '@office/lib/request';
+import { http } from '@office-admin/lib/request';
 import type { DashboardStats } from '@/types';
 
 /** 仪表盘接口 */

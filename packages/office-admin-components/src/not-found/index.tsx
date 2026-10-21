@@ -31,7 +31,7 @@ const DEFAULT_SUBTITLE = '抱歉，你访问的页面不存在或已被移除。
  *  - `pages/not-found.tsx`       —— 约定式路由的全局兜底（未命中的路径）
  *
  * 导出约定：组件**只有 default export**，使用方一律
- * `import NotFound from '@office/components/not-found'`。
+ * `import NotFound from '@office-admin/components/not-found'`。
  */
 function NotFound({
   title = '404',

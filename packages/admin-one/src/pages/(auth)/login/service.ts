@@ -1,4 +1,4 @@
-import { http } from '@office/lib/request';
+import { http } from '@office-admin/lib/request';
 import type { LoginParams, LoginResult, UserInfo } from '@/types';
 
 /** 认证接口：登录页触发登录，AuthStore 负责恢复会话与退出 */

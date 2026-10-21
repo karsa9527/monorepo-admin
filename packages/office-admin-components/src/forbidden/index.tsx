@@ -28,7 +28,7 @@ const DEFAULT_SUBTITLE = '抱歉，你没有权限访问该页面，请联系管
  *
  * 用法：
  *  1. 直接挂到约定式路由的 page.tsx 上，零配置
- *     `export { default } from '@office/components/forbidden';`
+ *     `export { default } from '@office-admin/components/forbidden';`
  *  2. 传 props 覆盖文案 / 按钮 / 返回目标
  *     `<Forbidden subTitle="仅管理员可访问" backPath="/dashboard" />`
  *
@@ -36,7 +36,7 @@ const DEFAULT_SUBTITLE = '抱歉，你没有权限访问该页面，请联系管
  * （replace 是为了不把 403 留进历史栈），也可以用 `onBack` 完全接管。
  *
  * 导出约定：组件**只有 default export**，使用方一律
- * `import Forbidden from '@office/components/forbidden'`。
+ * `import Forbidden from '@office-admin/components/forbidden'`。
  */
 function Forbidden({
   title = '403',

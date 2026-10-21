@@ -3,10 +3,10 @@ import { Card, Space, Table, Tag, Typography } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import { observer } from 'mobx-react-lite';
 import { usePermissionStore } from '@/stores';
-import { constantRoutes } from '@office/lib/router';
+import { constantRoutes } from '@office-admin/lib/router';
 import { PERMISSION_LABEL_MAP } from '@/constants/permission';
-import { flattenRoutes } from '@office/lib/router';
-import type { FlatRoute } from '@office/lib/router';
+import { flattenRoutes } from '@office-admin/lib/router';
+import type { FlatRoute } from '@office-admin/lib/router';
 
 /** 菜单管理：展示前端静态路由表与权限点映射（真实项目可由后端下发） */
 const MenuListPage = observer(function MenuListPage() {

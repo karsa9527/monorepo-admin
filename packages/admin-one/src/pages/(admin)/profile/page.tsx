@@ -4,7 +4,7 @@ import { observer } from 'mobx-react-lite';
 import Auth from '@/components/auth';
 import { useAuthStore, usePermissionStore } from '@/stores';
 import { PERMISSION_LABEL_MAP } from '@/constants/permission';
-import { formatDate, maskPhone } from '@office/lib';
+import { formatDate, maskPhone } from '@office-admin/lib';
 
 const ProfilePage = observer(function ProfilePage() {
   const auth = useAuthStore();

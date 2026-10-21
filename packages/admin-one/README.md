@@ -5,29 +5,29 @@
 > 本工程已并入 `monorepo-admin` 单仓，目录为 `packages/admin-one`。
 > 原工程里的公共代码已抽到共享包，本文档中出现的旧路径请对照替换：
 >
-> | 旧位置                                                          | 现在的位置                                      | 导入方式                          |
-> | --------------------------------------------------------------- | ----------------------------------------------- | --------------------------------- |
-> | `src/utils/*`                                                   | `packages/office-lib/src/*`                     | `@office/lib`                     |
-> | `src/utils/request/*`                                           | `packages/office-lib/src/request/*`             | `@office/lib/request`             |
-> | `src/utils/hooks/*`                                             | `packages/office-lib/src/hooks/*`               | `@office/lib/hooks`               |
-> | `src/router/{fs-routes,helpers,types,lazy-page,icons,redirect}` | `packages/office-lib/src/router/*`              | `@office/lib/router`              |
-> | `src/components/page-loading/*`                                 | `packages/office-components/src/loading/*`      | `@office/components/loading`      |
-> | `src/components/layouts/basic-layout/*`                         | `packages/office-components/src/basic-layout/*` | `@office/components/basic-layout` |
-> | `src/components/layouts/header-bar/*`                           | `packages/office-components/src/header-bar/*`   | `@office/components/header-bar`   |
-> | `src/components/layouts/side-menu/*`                            | `packages/office-components/src/side-menu/*`    | `@office/components/side-menu`    |
-> | `src/components/layouts/breadcrumbs/*`                          | `packages/office-components/src/breadcrumbs/*`  | `@office/components/breadcrumbs`  |
-> | （新增）应用侧容器                                              | `src/components/app-shell/*`                    | 由 `(admin)/layout.tsx` 引用      |
-> | `src/pages/(auth)/403/*` 的页面 UI                              | `packages/office-components/src/forbidden/*`    | `@office/components/forbidden`    |
-> | `src/pages/(auth)/404/*` + `src/pages/not-found.tsx` 的页面 UI  | `packages/office-components/src/not-found/*`    | `@office/components/not-found`    |
-> | `mock/*`                                                        | `packages/office-mock/src/*`                    | `@office/mock`                    |
+> | 旧位置                                                          | 现在的位置                                            | 导入方式                                |
+> | --------------------------------------------------------------- | ----------------------------------------------------- | --------------------------------------- |
+> | `src/utils/*`                                                   | `packages/office-admin-lib/src/*`                     | `@office-admin/lib`                     |
+> | `src/utils/request/*`                                           | `packages/office-admin-lib/src/request/*`             | `@office-admin/lib/request`             |
+> | `src/utils/hooks/*`                                             | `packages/office-admin-lib/src/hooks/*`               | `@office-admin/lib/hooks`               |
+> | `src/router/{fs-routes,helpers,types,lazy-page,icons,redirect}` | `packages/office-admin-lib/src/router/*`              | `@office-admin/lib/router`              |
+> | `src/components/page-loading/*`                                 | `packages/office-admin-components/src/loading/*`      | `@office-admin/components/loading`      |
+> | `src/components/layouts/basic-layout/*`                         | `packages/office-admin-components/src/basic-layout/*` | `@office-admin/components/basic-layout` |
+> | `src/components/layouts/header-bar/*`                           | `packages/office-admin-components/src/header-bar/*`   | `@office-admin/components/header-bar`   |
+> | `src/components/layouts/side-menu/*`                            | `packages/office-admin-components/src/side-menu/*`    | `@office-admin/components/side-menu`    |
+> | `src/components/layouts/breadcrumbs/*`                          | `packages/office-admin-components/src/breadcrumbs/*`  | `@office-admin/components/breadcrumbs`  |
+> | （新增）应用侧容器                                              | `src/components/app-shell/*`                          | 由 `(admin)/layout.tsx` 引用            |
+> | `src/pages/(auth)/403/*` 的页面 UI                              | `packages/office-admin-components/src/forbidden/*`    | `@office-admin/components/forbidden`    |
+> | `src/pages/(auth)/404/*` + `src/pages/not-found.tsx` 的页面 UI  | `packages/office-admin-components/src/not-found/*`    | `@office-admin/components/not-found`    |
+> | `mock/*`                                                        | `packages/office-admin-mock/src/*`                    | `@office-admin/mock`                    |
 >
 > 应用内保留的是「业务相关」部分：`src/pages`（约定式路由的页面目录）、`src/stores`、
 > `src/components/app-shell`（布局容器）、`src/theme`、`src/styles` 以及依赖 store 的 `src/router/auth-guard`。
-> `pages/(auth)/403|404/page.tsx` 与根 `not-found.tsx` 现在只剩一行 `export { default } from '@office/components/...`，
+> `pages/(auth)/403|404/page.tsx` 与根 `not-found.tsx` 现在只剩一行 `export { default } from '@office-admin/components/...`，
 > 路由元信息仍留在各自的 `route.meta.ts`。
 >
 > **命令请在仓库根目录执行**：`npm install` / `npm run dev:one` / `npm run build:one`。
-> 在子工程目录里执行时，`predev` 会先构建 `@office/mock`。
+> 在子工程目录里执行时，`predev` 会先构建 `@office-admin/mock`。
 
 TypeScript + React 18 + MobX 6 + Vite 5 + Ant Design 5 + Sass，内置**请求库**、**基础工具库**、**三层权限体系**与**明暗主题**，开箱即用。
 
@@ -35,7 +35,7 @@ TypeScript + React 18 + MobX 6 + Vite 5 + Ant Design 5 + Sass，内置**请求�
 
 ```bash
 # 在仓库根目录
-npm install            # 安装全部 workspace 依赖（postinstall 会构建 @office/mock）
+npm install            # 安装全部 workspace 依赖（postinstall 会构建 @office-admin/mock）
 npm run dev:one        # http://localhost:5178
 npm run build:one      # tsc --noEmit && vite build
 npm run typecheck
@@ -75,7 +75,7 @@ admin-react
 │   ├── router/                    # 约定式路由：fs-routes / lazy-page / auth-guard / redirect
 │   ├── components/                # 组件：一个组件一个文件夹，入口统一 index.tsx
 │   │   ├── auth/                  #   权限组件 <Auth> + usePermission
-│   │   └── app-shell/             #   布局容器：把 store 状态注入 @office/components 的布局组件
+│   │   └── app-shell/             #   布局容器：把 store 状态注入 @office-admin/components 的布局组件
 │   ├── pages/                     # 目录即路由（page.tsx / layout.tsx / route.meta.ts / service.ts）
 │   ├── styles/                    # Sass：_config 常量、_mixins、_theme CSS 变量、global
 │   ├── theme/                     # 主题：tokens + antd-theme（antd 全局配置）+ apply-theme

@@ -12,8 +12,8 @@
   },
   "scripts": {
     "postinstall": "npm run build:mock",
-    "build:mock": "npm run build -w @office/mock",
-    "dev:mock": "npm run dev -w @office/mock",
+    "build:mock": "npm run build -w @office-admin/mock",
+    "dev:mock": "npm run dev -w @office-admin/mock",
     "dev:one": "npm run dev -w @office/admin-one",
     "dev:two": "npm run dev -w @office/admin-two",
     "build": "npm run build -w @office/admin-one && npm run build -w @office/admin-two",

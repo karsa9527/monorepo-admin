@@ -20,8 +20,8 @@ import { observer } from 'mobx-react-lite';
 import Auth, { usePermission } from '@/components/auth';
 import { userService } from './service';
 import type { PageParams, UserInfo } from '@/types';
-import { useRequest } from '@office/lib/hooks';
-import { exportCsv, maskPhone } from '@office/lib';
+import { useRequest } from '@office-admin/lib/hooks';
+import { exportCsv, maskPhone } from '@office-admin/lib';
 
 interface SearchForm extends PageParams {
   keyword?: string;

@@ -13,9 +13,9 @@
 
 依赖全部来自同仓共享包，没有私有分支：
 
-- `@office/lib` —— 工具函数 / 请求层 / 约定式路由核心
-- `@office/components/loading` —— `Loading` 组件（无聚合出口，按子路径引入，且只提供默认导出）
-- `@office/mock` —— 开发期 mock 数据与中间件
+- `@office-admin/lib` —— 工具函数 / 请求层 / 约定式路由核心
+- `@office-admin/components/loading` —— `Loading` 组件（无聚合出口，按子路径引入，且只提供默认导出）
+- `@office-admin/mock` —— 开发期 mock 数据与中间件
 
 ## 启动
 
@@ -28,7 +28,7 @@ npm run dev:two      # http://localhost:5179
 npm run dev -w @office/admin-two
 ```
 
-演示账号与 `admin-one` 相同（`admin / 123456`、`operator / 123456`），数据来自 `@office/mock`。
+演示账号与 `admin-one` 相同（`admin / 123456`、`operator / 123456`），数据来自 `@office-admin/mock`。
 
 ## 与 admin-one 的差异点
 

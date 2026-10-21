@@ -41,7 +41,7 @@ const cx = (...names: Array<string | false | undefined>) => names.filter(Boolean
  * 颜色优先取宿主定义的 --app-* CSS 变量，取不到时回退到浅色主题色值。
  *
  * 导出约定：组件**只有 default export**，使用方一律
- * `import Loading from '@office/components/loading'`；
+ * `import Loading from '@office-admin/components/loading'`；
  * 不要再加具名导出（`export { Loading }`），保证「一个文件一个组件、一个入口一个默认导出」。
  */
 function Loading({
