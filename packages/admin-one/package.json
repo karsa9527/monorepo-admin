@@ -8,7 +8,7 @@
     "predev": "npm run build --prefix ../office-admin-mock",
     "dev": "vite",
     "prebuild": "npm run build --prefix ../office-admin-mock",
-    "build": "tsc --noEmit && vite build",
+    "build": "tsc --noEmit && rm -rf dist/ && vite build",
     "preview": "vite preview",
     "pretypecheck": "npm run build --prefix ../office-admin-mock",
     "typecheck": "tsc --noEmit",
